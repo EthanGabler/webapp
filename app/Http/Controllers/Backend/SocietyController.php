@@ -35,7 +35,7 @@ class SocietyController extends Controller
     {
         $society = Society::create($request->validated() + ['user_id' => auth()->id()]);
 
-        return redirect()->route('societies.index');
+        return to_route('societies.index');
 
     }
 
@@ -50,17 +50,19 @@ class SocietyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Society $society)
     {
-        //
+        return Inertia::render('Societies/Edit', compact('society'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SocietyStoreRequest $request, Society $society)
     {
-        //
+        $society->update($request->validated());
+
+        return to_route('societies.index');
     }
 
     /**

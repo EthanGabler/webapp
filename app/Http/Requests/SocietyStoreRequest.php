@@ -23,7 +23,6 @@ class SocietyStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'unique:societies'],
-            'slug' => ['required', 'unique:societies'],
             'description' => ['required'],
         ];
     }

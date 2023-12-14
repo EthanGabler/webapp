@@ -3,7 +3,7 @@
 
 <AuthenticatedLayout>
     <template #header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create Society</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Society</h2>
     </template>
 
     <div class="py-12">
@@ -39,7 +39,7 @@
                         <InputError class="mt-2" :message="form.errors.username" />
                     </div>
                 <PrimaryButton class="ms-4 mt-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Create
+                    Save
                 </PrimaryButton>
             </div>
                 </form>
@@ -58,6 +58,10 @@
     import TextInput from '@/Components/TextInput.vue';
     import { Head, useForm } from '@inertiajs/vue3';
 
+    const props = defineProps({
+        society: Object,
+    });
+
     const form = useForm({
     name: '',
     description: '',
@@ -65,6 +69,6 @@
 });
 
 const submit = () => {
-    form.post(route('societies.store'));
+    form.put(route("societies.update", props.society.id));
 };
 </script>
