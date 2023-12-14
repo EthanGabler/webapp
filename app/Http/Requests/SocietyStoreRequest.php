@@ -11,7 +11,7 @@ class SocietyStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class SocietyStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'unique:societies'],
+            'slug' => ['required', 'unique:societies'],
+            'description' => ['required'],
         ];
     }
 }

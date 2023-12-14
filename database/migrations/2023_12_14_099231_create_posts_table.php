@@ -12,7 +12,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('community_id')->constrained();
+            $table->foreignId('society_id')->constrained();
             $table->string('header');
             $table->text('body');
             $table->string('slug')->unique();

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Http\Requests\SocietyStoreRequest;
+use App\Models\Society;
+
 
 class SocietyController extends Controller
 {
@@ -12,7 +16,7 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        //
+        return 'ok';
     }
 
     /**
@@ -20,15 +24,18 @@ class SocietyController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Societies/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SocietyStoreRequest $request)
     {
-        //
+        $society = Society::create($request->validated() + ['user_id' => auth()->id()]);
+
+        return redirect()->route('socities.index');
+
     }
 
     /**
