@@ -16,7 +16,13 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        $societies = Society::all();
+        $societies = Society::paginate(5)->through(fn($society) => [
+            'id' => $society->id,
+            'name' => $society->name,
+            'slug' => $society->slug,
+        ]);
+
+
         return Inertia::render('Societies/Index', compact('societies'));
     }
 
@@ -68,8 +74,8 @@ class SocietyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Society $society)
     {
-        //
+        $society->delete();
     }
 }

@@ -28,23 +28,29 @@
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">URL</th>
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <tr v-for="society in societies" :key="society.id">
+              <tr v-for="society in societies.data" :key="society.id">
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{society.name}}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{society.description}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{society.slug}}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <Link :href="route('societies.edit', society.id)" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></Link>
+                  <Link :href="route('societies.edit', society.id)" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit<span class="sr-only"></span></Link>
+                  <Link :href="route('societies.destroy', society.id)" class="text-red-600 hover:text-red-600 mr-6" method="delete" as="button" type="button">Delete<span class="sr-only"></span></Link>
                 </td>
               </tr>
 
               <!-- More people... -->
             </tbody>
           </table>
+          <div class="m-2 p-2">
+              <Pagination :links="societies.links"></Pagination>
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +65,7 @@
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { Head, Link } from '@inertiajs/vue3';
-
+    import Pagination from "../../Components/Pagination.vue";
     defineProps( {
         societies:Object
     })
