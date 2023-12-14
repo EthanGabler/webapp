@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\SocietyController;
+use App\Http\Controllers\Backend\SocietyPostController;
+use App\Http\Controllers\Frontend\SubsocController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,9 +28,13 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/s/{slug}', [SubsocController::class, 'show'])->name('frontend.societies.show');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('/societies', SocietyController::class);
+Route::resource('/societies.posts', SocietyPostController::class);
 
 Route::middleware('auth')->group(function () {
     Route::resource('/societies', SocietyController::class);

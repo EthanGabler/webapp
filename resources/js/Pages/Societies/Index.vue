@@ -66,7 +66,9 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { Head, Link } from '@inertiajs/vue3';
     import Pagination from "../../Components/Pagination.vue";
+
     defineProps( {
         societies:Object
     })
+
 </script>

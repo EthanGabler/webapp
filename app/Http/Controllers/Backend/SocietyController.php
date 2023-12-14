@@ -19,6 +19,7 @@ class SocietyController extends Controller
         $societies = Society::paginate(5)->through(fn($society) => [
             'id' => $society->id,
             'name' => $society->name,
+            'description' => $society->description,
             'slug' => $society->slug,
         ]);
 

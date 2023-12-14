@@ -14,9 +14,9 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('society_id')->constrained();
             $table->string('header');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->string('slug')->unique();
-            $table->string('url');   
+            $table->string('url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
