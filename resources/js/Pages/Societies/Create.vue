@@ -8,9 +8,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="max-w-md mx-auto bg-slate-400 m-2 p-6">
+            <div class="max-w-md mx-auto bg-slate-100 m-2 p-6">
                 <form @submit.prevent="submit">
-                    <div style="border: 1px solid #ccc; padding: 16px; margin-top: 8px; border-radius: 10px; background-color: #d3d3d3;">
+                    <div style="border: 1px solid #d8d8d8; padding: 16px; margin-top: 8px; border-radius: 10px; background-color: #ffffff;">
                     <div>
                         <InputLabel for="name" value="Name" />
                         <TextInput

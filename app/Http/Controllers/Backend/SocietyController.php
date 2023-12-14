@@ -16,7 +16,8 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        return 'ok';
+        $societies = Society::all();
+        return Inertia::render('Societies/Index', compact('societies'));
     }
 
     /**
@@ -34,7 +35,7 @@ class SocietyController extends Controller
     {
         $society = Society::create($request->validated() + ['user_id' => auth()->id()]);
 
-        return redirect()->route('socities.index');
+        return redirect()->route('societies.index');
 
     }
 
