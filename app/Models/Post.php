@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'society_id',
+        'header',
+        'body',
+        'slug',
+        'url',
+    ];
+
     use HasFactory;
     public function users() {
         return $this->belongsTo(User::class);
