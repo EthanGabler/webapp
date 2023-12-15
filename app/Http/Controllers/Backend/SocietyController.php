@@ -77,6 +77,6 @@ class SocietyController extends Controller
      */
     public function destroy(Society $society)
     {
-        $society->delete();
+        $society->destroy();
     }
 }

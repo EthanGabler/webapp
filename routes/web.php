@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Backend\SocietyController;
 use App\Http\Controllers\Backend\SocietyPostController;
 use App\Http\Controllers\Frontend\SocietyController as FrontendSocietyController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\Frontend\PostController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+| 
 */
 
 Route::get('/', function () {
@@ -29,6 +30,7 @@ Route::get('/', function () {
     ]);
 });
 
+Route::post('/s/{society_slug}/posts/{post:slug}/comments', [CommentController::class, 'store'])->name('frontend.posts.comments');
 Route::get('/s/{society_slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.societies.posts.show');
 Route::get('/s/{slug}', [FrontendSocietyController::class, 'show'])->name('frontend.societies.show');
 Route::get('/dashboard', function () {

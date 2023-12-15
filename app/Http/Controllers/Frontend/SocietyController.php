@@ -13,7 +13,7 @@ class SocietyController extends Controller
 {
     public function show($slug) {
         $society = Society::where('slug', $slug)->first();
-        $posts = SocietyPostResource::collection($society->posts()->paginate(10));
+        $posts = SocietyPostResource::collection($society->posts()->with('user')->paginate(10));
         return Inertia::render('Frontend/Societies/Show', compact('society', 'posts'));
     }
 }
