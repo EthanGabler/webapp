@@ -69,6 +69,6 @@
 });
 
 const submit = () => {
-    form.put(route("societies.update", props.society.id));
+    form.put(route("societies.update", props.society.slug));
 };
 </script>

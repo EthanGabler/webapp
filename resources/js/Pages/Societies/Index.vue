@@ -40,8 +40,8 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{society.description}}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{society.slug}}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <Link :href="route('societies.edit', society.id)" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit<span class="sr-only"></span></Link>
-                  <Link :href="route('societies.destroy', society.id)" class="text-red-600 hover:text-red-600 mr-6" method="delete" as="button" type="button">Delete<span class="sr-only"></span></Link>
+                  <Link :href="route('societies.edit', society.slug)" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit<span class="sr-only"></span></Link>
+                  <Link :href="route('societies.destroy', society.slug)" class="text-red-600 hover:text-red-600 mr-6" method="delete" as="button" type="button">Delete<span class="sr-only"></span></Link>
                 </td>
               </tr>
 

@@ -16,7 +16,7 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        $societies = Society::paginate(5)->through(fn($society) => [
+        $societies = Society::where('user_id', auth()->id())->paginate(5)->through(fn($society) => [
             'id' => $society->id,
             'name' => $society->name,
             'description' => $society->description,
