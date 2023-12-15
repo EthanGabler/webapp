@@ -12,11 +12,19 @@
         Create Post</a>
 </div>
         </template>
-    <section class="m-2 p-2">
-        <PostCard v-for="posts in posts.data" :post="posts" :society="society.name" :key="posts.id"/>
+    <section class="flex flex-col md:flex-row m-2 p-2">
+        <div class="w-full md:w-8/12">
+            <div class="m-2 p-2 bg-white">
+        <h1 class="font-semibold text-2xl text-black">{{ post.data.header }}  </h1> <p class="text-slate-500">Posted by user {{post.data.username}}</p>
+        <a :href="route('societies.posts.edit', [society.slug, post.data.slug])" class="mr-2 text-blue-700">Edit</a>
+                    <a :href="route('societies.posts.edit', [society.slug, post.data.slug])" class="mr-2 text-red-500">Delete</a>
+        <p class="mt-4 text-black-500">{{post.data.body}}</p>
+        <a class="font-semibold text-1xl">URL: </a>
+        <a class="font-semibold text-1xl" style ="color: blue">localhost/s/{{society.name}}/posts/{{ post.slug }}</a>
+            </div>
+    </div>
     </section>
     <div class="mt-4 p-2">
-            <Pagination :links="posts.meta.links"/>
         </div>
 
     </AuthenticatedLayout>
@@ -31,6 +39,7 @@ import Pagination from "@/Components/Pagination.vue";
 
     defineProps({
         society: Object,
+        post: Object,
         posts: Object,
     })
 

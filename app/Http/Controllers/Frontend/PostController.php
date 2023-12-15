@@ -8,12 +8,13 @@ use App\Models\Post;
 use App\Models\Society;
 use Inertia\Inertia;
 use App\Http\Resources\PostShowResource;
+use Pages\Frontend\Posts\Show;
 
 class PostController extends Controller
 {
    public function show($society_slug, $slug){
-        $society = Society::where('slug', $society_slug)->first();
         $post = new PostShowResource(Post::where('slug', $slug)->first());
+        $society= Society::where('slug', $society_slug)->first();
         return Inertia::render('Frontend/Posts/Show', compact('society', 'post'));
    }
 }

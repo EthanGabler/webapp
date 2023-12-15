@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Frontend\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/s/{society_slug}/posts/{post:slug}', [SocietyPostController::class, 'show'])->name('frontend.societies.posts.show');
+Route::get('/s/{society_slug}/posts/{post:slug}', [PostController::class, 'show'])->name('frontend.societies.posts.show');
 Route::get('/s/{slug}', [FrontendSocietyController::class, 'show'])->name('frontend.societies.show');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
