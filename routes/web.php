@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Backend\SocietyController;
 use App\Http\Controllers\Backend\SocietyPostController;
-use App\Http\Controllers\Frontend\SubsocController;
+use App\Http\Controllers\Frontend\SocietyController as FrontendSocietyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +28,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/s/{slug}', [SubsocController::class, 'show'])->name('frontend.societies.show');
+Route::get('/s/{society_slug}/posts/{post:slug}', [SocietyPostController::class, 'show'])->name('frontend.societies.posts.show');
+Route::get('/s/{slug}', [FrontendSocietyController::class, 'show'])->name('frontend.societies.show');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
