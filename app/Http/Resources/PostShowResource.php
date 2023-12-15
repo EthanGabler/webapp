@@ -16,6 +16,7 @@ public function toArray(Request $request): array{
         'username' => $this->user->username,
         'slug' => $this->slug,
         'url' => $this->url,
+        'owner' => auth()->id() == $this->user_id ? true : false,
     ];
 }
 }

@@ -16,12 +16,18 @@
         <div class="w-full md:w-8/12">
             <div class="m-2 p-2 bg-white">
         <h1 class="font-semibold text-2xl text-black">{{ post.data.header }}  </h1> <p class="text-slate-500">Posted by user {{post.data.username}}</p>
-        <a :href="route('societies.posts.edit', [society.slug, post.data.slug])" class="mr-2 text-blue-700">Edit</a>
-                    <a :href="route('societies.posts.edit', [society.slug, post.data.slug])" class="mr-2 text-red-500">Delete</a>
-        <p class="mt-4 text-black-500">{{post.data.body}}</p>
-        <a class="font-semibold text-1xl">URL: </a>
-        <a class="font-semibold text-1xl" style ="color: blue">localhost/s/{{society.name}}/posts/{{ post.slug }}</a>
+        <div v-if="post.data.owner">
+        <Link :href="route('societies.posts.edit', [society.slug, post.data.slug])" class="mr-2 text-blue-700">Edit</Link>
+                    <Link :href="route('societies.posts.destroy', [society.slug, post.data.slug])" class="mr-2 text-red-500" 
+                    method="delete" as="button" type="button">Delete</Link>
             </div>
+        <p class="mt-4 text-black-500">{{post.data.body}}</p>
+        <div class="mt-4">
+
+        <a class="font-semibold text-1xl mt-2">Associated URL: </a>
+        <a class="font-semibold text-1xl" style ="color: blue">{{post.data.url}}</a>
+    </div>       
+    </div>
     </div>
     </section>
     <div class="mt-4 p-2">

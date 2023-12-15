@@ -9,6 +9,8 @@ use App\Models\Society;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Post;
+
 
 
 class SocietyPostController extends Controller
@@ -24,6 +26,18 @@ class SocietyPostController extends Controller
             'body' => $request->body,
         ]);
 
+        return to_route('frontend.societies.show', $society->slug);
+    }
+    public function edit(Society $society, Post $post) {
+        return Inertia::render('Societies/Posts/Edit', compact('society', 'post'));
+    }
+    public function update(StorePostRequest $request, Society $society, Post $post) {
+        $post->update($request->validated());
+        return to_route('frontend.societies.show', $society->slug);
+
+    }
+    public function destroy(Society $society, Post $post) {
+        $post->delete();
         return to_route('frontend.societies.show', $society->slug);
     }
 }
